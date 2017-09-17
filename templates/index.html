@@ -15,12 +15,23 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+    <!--Font awesome CDN-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--Jquery cdn -->
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <!--Main JS File-->
+    <script src="script/main.js"></script>
 </head>
 <body>
     <div class="page-wrap">
@@ -125,9 +136,37 @@
                             <div class="product_title">
                                 <h3>Product Progress</h3>
                             </div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                    <span class="sr-only">40% Complete (success)</span>
+                            <div class="col-sm-1">
+                                <div class="input-group spinner">
+                                    <div class="input-group-btn-vertical">
+                                        <div class="add-button button-down" type="button"><i class="fa fa-minus-square"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
+                                    <div id="progressAdd" class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-1 button-up-wrap">
+                                <div class="input-group spinner">
+                                    <div class="input-group-btn-vertical">
+                                        <div class="add-button button-up" type="button"><i class="fa fa-plus-square"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 number-holder-wrapper">
+                                <div class="input-group spinner">
+                                    <input type="number" class="number-holder form-control" value="0" min="0" max="100">
+                                    <p class="help-block">Min 0 - Max 100.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="submit-button-wrap">
+                                    <div class="submit-button">
+                                        <i class="fa fa-paw fa-5x" aria-hidden="true"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -105,3 +105,52 @@ footer{
 {
     font-size: 87px;
 }
+
+.add-button i{
+    font-size: 25px;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.button-up-wrap{
+    text-align: right;
+    text-align: -webkit-right;
+}
+
+.button-up:hover{
+    color: #d9534f;
+}
+
+.button-down:hover{
+    color: #5cb85c;
+}
+
+.number-holder-wrapper,.submit-button-wrap{
+    text-align: center;
+    text-align: -webkit-center;
+}
+.submit-button-wrap .submit-button i{
+    cursor: pointer;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1);
+    transition: all 200ms ease-in;
+    transform: scale(1);
+}
+.submit-button-wrap .submit-button i:hover{
+    color: #5cb85c;
+    //box-shadow: 0px 0px 150px #000000;
+    z-index: 2;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1.5) rotate(20deg);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1.5) rotate(20deg);
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1.5) rotate(20deg);
+    transition: all 200ms ease-in;
+    transform: scale(1.5) rotate(20deg);
+
+}
