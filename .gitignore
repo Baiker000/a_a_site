@@ -80,3 +80,4 @@ fabric.properties
 *.iml
 out/*
 .idea/*
+media/*

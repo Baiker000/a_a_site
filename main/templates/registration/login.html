@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+ <form method="POST">{% csrf_token %}
+        {% csrf_token %}
+        <p>
+            <label>Username</label>
+            <input type="text" name="username">
+        </p>
+        <p>
+            <label>Password</label>
+            <input type="password" name="password">
+        </p>
+        <button type="submit">Login</button>
+     {% if  name%}
+     <p>{{name}}</p>
+     {% endif %}
+    </form>
+<form method="POST">{% csrf_token %}
+    <button type = "submit">Logout</button>
+</form>
+</body>
+</html>
