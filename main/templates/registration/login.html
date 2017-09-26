@@ -27,7 +27,7 @@
         <button type="submit">Login</button>
     </div>
      {% if  name%}
-     <p>{{name}}</p>
+     <p class="current-username">{{name}}</p>
      {% endif %}
     </form>
     <form method="POST">{% csrf_token %}

@@ -159,3 +159,11 @@ footer{
     transform: scale(1.5) rotate(20deg);
 
 }
+.badge i{
+    color: #f2dc4b;
+}
+
+.current_coin_wrapper{
+    display: flex;
+    justify-content: space-evenly;
+}

@@ -78,8 +78,18 @@
                             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                             <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                             {% else %}
-                                <li><font color="white">{{ request.user.cash }}</font></li>
+                            <li>
+                                <a href="#">
+                                    <span class="badge">
+                                        <i class="fa fa-btc" aria-hidden="true"></i>
+                                        <font color="white">
+                                            {{ request.user.cash }}
+                                        </font>
+                                    </span>
+                                </a>
+                            </li>
                             <li class="dropdown">
+
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="glyphicon glyphicon-user"></span> 
                                     <strong>{{ request.user }}</strong>
@@ -141,6 +151,11 @@
                         <div class="col-sm-8">
                             <div class="product_title">
                                 <h3>Product Progress</h3>
+                                <div class="current_coin_wrapper">
+                                    <span class="current_coin">100</span>
+                                    <div class="separator">/</div>
+                                    <span class="max_coin">555</span>
+                                </div>
                             </div>
                             <div class="col-sm-1">
                                 <div class="input-group spinner">
@@ -151,8 +166,18 @@
                             </div>
                             <div class="col-sm-10">
                                 <div class="progress">
-                                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{ now_count }}" aria-valuemin="0" aria-valuemax="{{ total_count }}" style="width: {{ perc }}%"></div>
-                                    <div id="progressAdd" class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="{{ free }}"></div>
+                                    <div class="progress-bar progress-bar-success progress-bar-striped active"
+                                         role="progressbar"
+                                         aria-valuenow="{{ now_count }}"
+                                         aria-valuemin="0"
+                                         aria-valuemax="{{ total_count }}"
+                                         style="width: {{ perc }}%"></div>
+                                    <div id="progressAdd"
+                                         class="progress-bar progress-bar-danger progress-bar-striped active"
+                                         role="progressbar" style="width: 0%"
+                                         aria-valuenow="0"
+                                         aria-valuemin="0"
+                                         aria-valuemax="{{ free }}"></div>
                                 </div>
                             </div>
                             <div class="col-sm-1 button-up-wrap">
@@ -164,8 +189,8 @@
                             </div>
                             <div class="col-sm-6 number-holder-wrapper">
                                 <div class="input-group spinner">
-                                    <input type="number" class="number-holder form-control" value="0" min="0" max="100">
-                                    <p class="help-block">Min 0 - Max 100.</p>
+                                    <input type="number" class="number-holder form-control" value="0" min="0" max="{{ total_count }}">
+                                    <p class="help-block">Min 0 - Max {{ total_count }}.</p>
                                 </div>
                             </div>
                             <div class="col-sm-6">

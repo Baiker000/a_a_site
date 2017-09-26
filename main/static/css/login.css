@@ -105,3 +105,9 @@ button:after {
   bottom: 0;
 
   }
+
+.current-username{
+    font-family: "Comic Sans MS";
+    text-align: center;
+    text-align: -webkit-center;
+}
