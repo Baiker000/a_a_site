@@ -149,12 +149,13 @@
                                </div>
                            </div>
                         <div class="col-sm-8">
+                            <form action="add" method="post" name="involve">{% csrf_token %}
                             <div class="product_title">
                                 <h3>Product Progress</h3>
                                 <div class="current_coin_wrapper">
-                                    <span class="current_coin">100</span>
+                                    <span class="current_coin">{{ now_count }}</span>
                                     <div class="separator">/</div>
-                                    <span class="max_coin">555</span>
+                                    <span class="max_coin">{{ total_count }}</span>
                                 </div>
                             </div>
                             <div class="col-sm-1">
@@ -189,17 +190,19 @@
                             </div>
                             <div class="col-sm-6 number-holder-wrapper">
                                 <div class="input-group spinner">
-                                    <input type="number" class="number-holder form-control" value="0" min="0" max="{{ total_count }}">
-                                    <p class="help-block">Min 0 - Max {{ total_count }}.</p>
+                                    <input name="coins" type="number" class="number-holder form-control" value="0" min="0" max="{{ free }}">
+                                    <p class="help-block">Min 0 - Max {{ free }}.</p>
                                 </div>
                             </div>
+                                <input type="hidden", name="lottery", value="{{ uniq }}">
                             <div class="col-sm-6">
                                 <div class="submit-button-wrap">
-                                    <div class="submit-button">
+                                    <div class="submit-button" type="button" onClick="javascript:document.forms['involve'].submit();">
                                         <i class="fa fa-paw fa-5x" aria-hidden="true"></i>
+
                                     </div>
                                 </div>
-                            </div>
+                            </div></form>
                         </div>
                     </div>
                 </div>

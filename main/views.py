@@ -16,7 +16,7 @@ def index(request):
     return render(request, 'index.html', {'title': lottery.name, 'total_count': lottery.total_count,
                                           'now_count': lottery.now_count, 'perc': lottery_percent,
                                           'name': lottery.merchandise.name,
-                                          'pic': lottery.merchandise.pic.url, 'free': free_space})
+                                          'pic': lottery.merchandise.pic.url, 'free': free_space, 'uniq': lottery.random_int})
 
 
 def login_page(request):
@@ -38,3 +38,18 @@ def login_page(request):
 def logout_page(request):
     logout(request)
     return HttpResponseRedirect("/")
+
+
+def involve_to_lottery(request):
+    try:
+        coins = int(request.POST['coins'])
+    except ValueError:
+        coins = 0
+    coins = coins if coins > 0 else 0
+    add_user_into_lottery(request.user, request.POST['lottery'], coins)
+
+    ### for test
+    all_users_here=Lottery.objects.get(random_int=request.POST['lottery']).users.all()
+    #all_users_here = UserScore.objects.all()
+    ###
+    return render(request, 'add.html', {'coins': request.POST['coins'], 'lottery':request.POST['lottery'], 'all_users':all_users_here})
