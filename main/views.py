@@ -40,7 +40,15 @@ def logout_page(request):
     return HttpResponseRedirect("/")
 
 
+def register(request):
+    if request.user.is_authenticated:
+        return render(request, 'registration/registration.html', {'error': 'Ты уже один из нас'})
+    return render(request, 'registration/registration.html')
+
+
+
 def involve_to_lottery(request):
+    if not request.user.is_authenticated: return HttpResponseRedirect("/")
     try:
         coins = int(request.POST['coins'])
     except ValueError:
@@ -52,4 +60,4 @@ def involve_to_lottery(request):
     all_users_here=Lottery.objects.get(random_int=request.POST['lottery']).users.all()
     #all_users_here = UserScore.objects.all()
     ###
-    return render(request, 'add.html', {'coins': request.POST['coins'], 'lottery':request.POST['lottery'], 'all_users':all_users_here})
+    return render(request, 'add.html', {'coins': coins, 'lottery':request.POST['lottery'], 'all_users':all_users_here})

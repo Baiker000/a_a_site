@@ -28,11 +28,14 @@ class Lottery(models.Model):
         return self.name
 
     def check_end(self):
-        pass
+        if self.now_count >= self.total_count:
+            return True
 
     def add_count(self, coins):
+        if self.check_end(): return 0
         if (int(coins)+self.now_count) > self.total_count:
             coins_for_return = int(coins)+self.now_count-self.total_count
+            coins -= coins_for_return
         else:
             coins_for_return = 0
         self.now_count += int(coins)
@@ -68,10 +71,12 @@ def add_user_into_lottery(user, lottery, coins):
     if not user.check_coins(coins):
         return False # some exception here
     else:
-        user.cash -= int(coins)
         current_lottery= Lottery.objects.get(random_int=lottery)
+        if current_lottery.check_end():
+            return False
+        user.cash -= int(coins)
         try:
-            nw=UserScore.objects.get(user=user, lottery=current_lottery)
+           nw=UserScore.objects.get(user=user, lottery=current_lottery)
         except UserScore.DoesNotExist:
             nw = UserScore(user=user, lottery=current_lottery, score=coins)
         else:
