@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from main.models import *
 from django.http import Http404, HttpResponseRedirect
 from django.contrib.auth import login, authenticate, logout
+from .forms import RegForm
 
 
 # Create your views here.
@@ -42,8 +43,15 @@ def logout_page(request):
 
 def register(request):
     if request.user.is_authenticated:
-        return render(request, 'registration/registration.html', {'error': 'Ты уже один из нас'})
-    return render(request, 'registration/registration.html')
+        return render(request, 'registration/registration.html', {'error': 'Ты уже один из нас'}) #redirect to user page
+    form = RegForm()
+    if request.method == 'POST':
+        form = RegForm(request.POST)
+        if form.is_valid():
+            reg_user=form.save()
+            login(request, reg_user)
+            return HttpResponseRedirect('/') #redirect to user page
+    return render(request, 'registration/registration.html', {'form': form})
 
 
 
