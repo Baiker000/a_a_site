@@ -7,7 +7,7 @@ class RegForm(UserCreationForm):
     email = forms.EmailField(required=True)
     first_name = forms.CharField(required=True)
     last_name = forms.CharField(required=True)
-    avatar = forms.ImageField(required=False)
+#    avatar = forms.ImageField(required=False)
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'avatar')
@@ -17,7 +17,7 @@ class RegForm(UserCreationForm):
         user.email = self.cleaned_data['email']
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
-        user.avatar = self.cleaned_data['avatar']
+#        user.avatar = self.cleaned_data['avatar']
         if commit:
             user.save()
 

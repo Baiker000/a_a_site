@@ -46,7 +46,7 @@ def register(request):
         return render(request, 'registration/registration.html', {'error': 'Ты уже один из нас'}) #redirect to user page
     form = RegForm()
     if request.method == 'POST':
-        form = RegForm(request.POST)
+        form = RegForm(request.POST, request.FILES)
         if form.is_valid():
             reg_user=form.save()
             login(request, reg_user)

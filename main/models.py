@@ -46,7 +46,7 @@ class Lottery(models.Model):
 class User(auth.AbstractUser):
     cash = models.PositiveIntegerField(default=0)
     active_lottery = models.ManyToManyField(Lottery, through='UserScore')
-    avatar = models.ImageField(upload_to=RandomFileName("avatar"), blank=True, null=True)
+    avatar = models.ImageField(upload_to=RandomFileName("avatar"), blank=True, null=True, default='default/avatar.png')
 
     def __str__(self):
         return self.username
