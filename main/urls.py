@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^$', views.index),
     url(r'add$', views.involve_to_lottery),
     url(r'registration', views.register),
+    url(r'profile', views.profile)
 ]

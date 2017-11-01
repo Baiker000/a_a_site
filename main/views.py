@@ -69,3 +69,7 @@ def involve_to_lottery(request):
     #all_users_here = UserScore.objects.all()
     ###
     return render(request, 'add.html', {'coins': coins, 'lottery':request.POST['lottery'], 'all_users':all_users_here})
+
+
+def profile(request):
+    return render(request, 'registration/profile.html')
