@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--Login SStyles-->
+<link rel="stylesheet" href="../../static/css/login.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Login</title>
+</head>
+<body>
+<div class="login">
+    <h1>Login</h1>
+    <form method="POST">{% csrf_token %}
+    {% csrf_token %}
+    <p>
+        <label>Username</label>
+        <input type="text" name="username">
+    </p>
+    <p>
+        <label>Password</label>
+        <input type="password" name="password">
+    </p>
+    <div class="button-wrap">
+        <button type="submit">Login</button>
+    </div>
+     {% if  name%}
+     <p class="current-username">{{name}}</p>
+     {% endif %}
+    </form>
+    <form method="POST">{% csrf_token %}
+        <div class="button-wrap">
+            <button type = "submit">Logout</button>
+       </div>
+    </form>
+</div>
+</body>
+</html>

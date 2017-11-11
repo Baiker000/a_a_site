@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
     <title>AA</title>
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -31,7 +32,7 @@
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
     <!--Main JS File-->
-    <script src="script/main.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </head>
 <body>
     <div class="page-wrap">
@@ -45,7 +46,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">AyAy</a>
+                        <a class="navbar-brand" href="/">AyAy</a>
                     </div>
 
                     <!-- ссылки, формы, выпадающее меню и прочие элементы -->
@@ -73,12 +74,25 @@
                             <button type="submit" class="btn btn-default">Submit</button>
                         </form>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            {% if request.user.is_authenticated == False %}
+                            <li><a href="registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                            <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            {% else %}
+                            <li>
+                                <a href="#">
+                                    <span class="badge">
+                                        <i class="fa fa-btc" aria-hidden="true"></i>
+                                        <font color="white">
+                                            {{ request.user.cash }}
+                                        </font>
+                                    </span>
+                                </a>
+                            </li>
                             <li class="dropdown">
+
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="glyphicon glyphicon-user"></span> 
-                                    <strong>Admin</strong>
+                                    <strong>{{ request.user }}</strong>
                                     <span class="glyphicon glyphicon-chevron-down"></span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -87,14 +101,15 @@
                                             <div class="row">
                                                 <div class="col-lg-4">
                                                     <p class="text-center">
-                                                        <span class="glyphicon glyphicon-user icon-size"></span>
+
+                                                        <span class="glyphicon glyphicon-user icon-size"></span><img class="header-profile-image" src="{{ request.user.avatar.url }}"/>
                                                     </p>
                                                 </div>
                                                 <div class="col-lg-8">
-                                                    <p class="text-left"><strong>Name</strong></p>
-                                                    <p class="text-left small">@email.com</p>
+                                                    <p class="text-left"><strong>{{ request.user.username }}</strong></p>
+                                                    <p class="text-left small">{{ request.user.email }}</p>
                                                     <p class="text-left">
-                                                        <a href="#" class="btn btn-primary btn-block btn-sm">Button</a>
+                                                        <a href="profile" class="btn btn-primary btn-block btn-sm">Profile</a>
                                                     </p>
                                                 </div>
                                             </div>
@@ -106,7 +121,7 @@
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <p>
-                                                        <a href="#" class="btn btn-danger btn-block">Button</a>
+                                                        <a href="logout" class="btn btn-danger btn-block">Log out</a>
                                                     </p>
                                                 </div>
                                             </div>
@@ -114,67 +129,16 @@
                                     </li>
                                 </ul>
                             </li>
+                            {% endif %}
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>
         </header>
         <main>
-            <div class="main_wrapper">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-4">
-                               <div class="row">
-                                   <div class="product_image">
-                                       <div class="product_image_wrapper">
-                                           <img src="" alt="">
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-                        <div class="col-sm-8">
-                            <div class="product_title">
-                                <h3>Product Progress</h3>
-                            </div>
-                            <div class="col-sm-1">
-                                <div class="input-group spinner">
-                                    <div class="input-group-btn-vertical">
-                                        <div class="add-button button-down" type="button"><i class="fa fa-minus-square"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-10">
-                                <div class="progress">
-                                    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%"></div>
-                                    <div id="progressAdd" class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="col-sm-1 button-up-wrap">
-                                <div class="input-group spinner">
-                                    <div class="input-group-btn-vertical">
-                                        <div class="add-button button-up" type="button"><i class="fa fa-plus-square"></i></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 number-holder-wrapper">
-                                <div class="input-group spinner">
-                                    <input type="number" class="number-holder form-control" value="0" min="0" max="100">
-                                    <p class="help-block">Min 0 - Max 100.</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="submit-button-wrap">
-                                    <div class="submit-button">
-                                        <i class="fa fa-paw fa-5x" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
+            {% block content %}
+            {% endblock %}
+        </main></div>
     <footer>
         <div class="footer_mimi">
         </div>
@@ -184,5 +148,6 @@
             <p>Copyright © NekoTech | <a href="">Privacy Policy</a> | <a href="">Terms of Use</a></p>
         </div>
     </footer>
+
 </body>
 </html>

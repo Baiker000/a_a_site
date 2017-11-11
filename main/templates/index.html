@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block content %}
+            <div class="main_wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                               <div class="row">
+                                   <div class="product_image">
+                                       <div class="product_image_wrapper">
+                                           <img class="product_image_main" src="{{ pic }}" alt="{{ name }}">
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                        <div class="col-sm-8">
+                            <form action="add" method="post" name="involve">{% csrf_token %}
+                            <div class="product_title">
+                                <h3>Product Progress</h3>
+                                <div class="current_coin_wrapper">
+                                    <span class="current_coin">{{ now_count }}</span>
+                                    <div class="separator">/</div>
+                                    <span class="max_coin">{{ total_count }}</span>
+                                </div>
+                            </div>
+                            {% if user.is_authenticated %}
+                            <div class="col-sm-1">
+                                <div class="input-group spinner">
+                                    <div class="input-group-btn-vertical">
+                                        <div class="add-button button-down" type="button"><i class="fa fa-minus-square"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                            <div class="col-sm-10">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-success progress-bar-striped active"
+                                         role="progressbar"
+                                         aria-valuenow="{{ now_count }}"
+                                         aria-valuemin="0"
+                                         aria-valuemax="{{ total_count }}"
+                                         style="width: {{ perc }}%"></div>
+                                    <div id="progressAdd"
+                                         class="progress-bar progress-bar-danger progress-bar-striped active"
+                                         role="progressbar" style="width: 0%"
+                                         aria-valuenow="0"
+                                         aria-valuemin="0"
+                                         aria-valuemax="{{ free }}"></div>
+                                </div>
+                            </div>
+                                {% if user.is_authenticated %}
+                            <div class="col-sm-1 button-up-wrap">
+                                <div class="input-group spinner">
+                                    <div class="input-group-btn-vertical">
+                                        <div class="add-button button-up" type="button"><i class="fa fa-plus-square"></i></div>
+                                    </div>
+                                </div>
+                            </div>{% endif %}
+                                {% if user.is_authenticated %}
+                            <div class="col-sm-6 number-holder-wrapper">
+                                <div class="input-group spinner">
+                                    <input name="coins" type="number" class="number-holder form-control" value="0" min="0" max="{{ free }}">
+                                    <p class="help-block">Min 0 - Max {{ free }}.</p>
+                                </div>
+                            </div>
+                                <input type="hidden" name="lottery" value="{{ uniq }}">
+                            <div class="col-sm-6">
+                                <div class="submit-button-wrap">
+                                    <div class="submit-button" type="button" onClick="javascript:document.forms['involve'].submit();">
+                                        <i class="fa fa-paw fa-5x" aria-hidden="true"></i>
+
+                                    </div>
+                                </div>
+                            </div></form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+{% endblock %}
