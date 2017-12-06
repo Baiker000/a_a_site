@@ -24,6 +24,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!--Jquery cdn -->
@@ -31,8 +32,17 @@
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous"></script>
+
+    <!--Jquery UI cdn-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <!--Main JS File-->
     <script src="{% static 'js/main.js' %}"></script>
+
+
 </head>
 <body>
     <div class="page-wrap">
@@ -88,21 +98,20 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="dropdown">
+                            <li class="profile dropdown">
 
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="glyphicon glyphicon-user"></span> 
                                     <strong>{{ request.user }}</strong>
                                     <span class="glyphicon glyphicon-chevron-down"></span>
                                 </a>
-                                <ul class="dropdown-menu">
+                                <ul class="profile-menu dropdown-menu">
                                     <li>
                                         <div class="navbar-login">
                                             <div class="row">
                                                 <div class="col-lg-4">
                                                     <p class="text-center">
-
-                                                        <span class="glyphicon glyphicon-user icon-size"></span><img class="header-profile-image" src="{{ request.user.avatar.url }}"/>
+                                                        <img class="header-profile-image" src="{{ request.user.avatar.url }}"/>
                                                     </p>
                                                 </div>
                                                 <div class="col-lg-8">

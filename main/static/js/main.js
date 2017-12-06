@@ -59,5 +59,49 @@ $(function(){
         }
     });
 
+    // Drggable progressbar
+
+    $( function() {
+        $( "#slider-range" ).slider({
+            range: true,
+            min: 0,
+            max: 500,
+            values: [ 75, 300 ],
+            slide: function( event, ui ) {
+                $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+            }
+        });
+        $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+            " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+    } );
+
+    //Prfile drppdown animation
+    $('.profile').click(function() {
+        $('.profile-menu')
+            .stop(true, true)
+            .animate({
+                height:"toggle",
+                opacity:"toggle"
+            },1000);
+    });
+
+    // Image preview
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('.img-preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#id_avatar").change(function() {
+        readURL(this);
+    });
 
 });
+

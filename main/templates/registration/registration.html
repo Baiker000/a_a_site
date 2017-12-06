@@ -1,17 +1,39 @@
+
+
+
 {% extends 'base.html' %}
+
 {% block content %}
+<!--Login SStyles-->
+<!--**********************Need fix path****************-->
+<link rel="stylesheet" href="../../static/css/registration.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     {% if error %}
     <h1>Ошибка</h1>
     <h2>{{ error }}</h2>
     {% endif %}
     {{ form.non_field_errors }}
-<form method="post", enctype='multipart/form-data'>{% csrf_token %}
-    {% for field in form %}
-    {{ field.errors }}
-        <p>{{ field.label }} {{ field }}</p>
-    {% endfor %}
-<button type="submit">Ня</button>
-</form>
+    <div class="registration-title">
+        <h1>Sign Up</h1>
+    </div>
+    <form method="post", enctype='multipart/form-data', class="registration-form">{% csrf_token %}
+        {% for field in form %}
+        {{ field.errors }}
+            <div class="form-group">
+                <p>{{ field.label }}</p>
+                <div class="input-wrap">{{ field }}</div>
+            </div>
+        {% endfor %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <!--<input type='file' id="imgInp" />-->
+            <!--<img id="blah" src="#" alt="your image" />-->
+
+
+        <img class="img-preview" src="#" alt="your image" />
+        <div class="button-wrap">
+            <button type="submit">Nya</button>
+        </div>
+    </form>
 
 {% endblock %}
