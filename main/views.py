@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from main.models import *
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponseForbidden
 from django.contrib.auth import login, authenticate, logout
 from .forms import RegForm
 
@@ -72,4 +72,6 @@ def involve_to_lottery(request):
 
 
 def profile(request):
+    if not request.user.is_authenticated:
+        return HttpResponseForbidden()
     return render(request, 'registration/profile.html')

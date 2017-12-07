@@ -52,7 +52,7 @@ class User(auth.AbstractUser):
         return self.username
 
     def check_coins(self, coins):
-        if self.cash < int(coins):
+        if self.cash < int(coins) or self.cash == 0:
             return False
         else:
             return True
@@ -68,7 +68,7 @@ class UserScore(models.Model):
 
 
 def add_user_into_lottery(user, lottery, coins):
-    if not user.check_coins(coins):
+    if not user.check_coins(coins) or coins == 0:
         return False # some exception here
     else:
         current_lottery= Lottery.objects.get(random_int=lottery)
